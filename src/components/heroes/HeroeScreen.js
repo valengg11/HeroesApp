@@ -1,7 +1,8 @@
 import React, { useMemo } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import { getHeroById } from "../../selectors/getHeroById";
-import { Redirect } from "react-router-dom";
+
+import './styles.css'
 
 export const HeroScreen = ({ history }) => {
   const { heroId } = useParams();
@@ -14,7 +15,7 @@ export const HeroScreen = ({ history }) => {
     return <Redirect to="/" />;
   }
   const handleReturn = () => {
-    if (history.length >= 2) {
+    if (history.length <= 2) {
       history.push("/");
     } else {
       history.goBack();
@@ -23,16 +24,16 @@ export const HeroScreen = ({ history }) => {
   const { superhero, alter_ego, publisher, first_appearance, characters } =
     hero;
   return (
-    <div className="row mt-5 animate__animated animate__fadeInUp">
+    <div className="heroScreenCard row mt-5 animate__animated animate__fadeInUp">
       <div className="col-4">
         <img
           src={`../assets/heroes/${heroId}.jpg`}
-          className="img-thumbnail"
+          className="img-thumbnail animate__animated animate__zoomIn"
           alt={superhero}
         />
       </div>
       <div className="col-8">
-        <h3 className="mb-3">{superhero}</h3>
+        <h1 className="mb-3 heroScreenTitle">{superhero}</h1>
         <ul className="list-group list-group-flush">
           <li className="list-group-item">
             <strong>Alter ego:</strong> <p>{alter_ego}</p>
@@ -44,9 +45,9 @@ export const HeroScreen = ({ history }) => {
             <strong>Fist Appearance:</strong> <p>{first_appearance}</p>
           </li>
         </ul>
-        <h5 className="mt-3">Characters</h5>
-        <p>{characters}</p>
-        <button onClick={handleReturn} className="btn btn-outline-info mt-4">
+        <h5 className="mt-3 ml-2">Characters</h5>
+        <p className="ml-3">{characters}</p>
+        <button onClick={handleReturn} className="btn btn-dark btn-lg ml-2 mt-4 animate__animated animate__backInUp">
           Return
         </button>
       </div>

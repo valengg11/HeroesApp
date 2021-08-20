@@ -1,0 +1,13 @@
+.heroScreenCard {
+    box-shadow: 5px 5px 14px -1px #ADADAD;
+    padding: 20px 10px;
+    border-radius: 8px;
+}
+
+.heroScreenTitle{
+    letter-spacing: 2px;
+}
+
+button {
+    letter-spacing: 2px;
+}
