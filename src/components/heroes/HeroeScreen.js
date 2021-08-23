@@ -2,7 +2,9 @@ import React, { useMemo } from "react";
 import { useParams, Redirect } from "react-router-dom";
 import { getHeroById } from "../../selectors/getHeroById";
 
-import './styles.css'
+import "./styles.css";
+
+const heroesImages = require.context("../../assets/heroes", true);
 
 export const HeroScreen = ({ history }) => {
   const { heroId } = useParams();
@@ -27,7 +29,8 @@ export const HeroScreen = ({ history }) => {
     <div className="heroScreenCard row mt-5 animate__animated animate__fadeInUp">
       <div className="col-4">
         <img
-          src={`../assets/heroes/${heroId}.jpg`}
+          // src={`../assets/heroes/${heroId}.jpg`}  desde /public/assets
+          src={heroesImages(`./${heroId}.jpg`).default}
           className="img-thumbnail animate__animated animate__zoomIn"
           alt={superhero}
         />
@@ -47,7 +50,10 @@ export const HeroScreen = ({ history }) => {
         </ul>
         <h5 className="mt-3 ml-2">Characters</h5>
         <p className="ml-3">{characters}</p>
-        <button onClick={handleReturn} className="btn btn-dark btn-lg ml-2 mt-4 animate__animated animate__backInUp">
+        <button
+          onClick={handleReturn}
+          className="btn btn-dark btn-lg ml-2 mt-4 animate__animated animate__backInUp"
+        >
           Return
         </button>
       </div>
