@@ -20,7 +20,6 @@ export const SearchScreen = ({ history }) => {
   const handleSearch = (e) => {
     e.preventDefault();
     history.push(`?q=${searchText}`);
-    console.log(searchText);
   };
   return (
     <div>
@@ -48,6 +47,15 @@ export const SearchScreen = ({ history }) => {
         <div className="col-7">
           <h4>Results</h4>
           <hr />
+
+          {(q === "" )
+          && 
+          (<div className="alert alert-info">Search a hero</div>)}
+
+          {(q !== "" && heroesFiltered.length === 0) 
+          && 
+          (<div className="alert alert-danger">There is no a '{q}' hero</div>)}
+
           {heroesFiltered.map((hero) => (
             <HeroCard key={hero.id} {...hero} />
           ))}
